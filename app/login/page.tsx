@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { toast } from "sonner";
+import Link from "next/link";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -123,6 +124,13 @@ export default function LoginPage() {
             {loading ? "Signing in..." : "Login with Email"}
           </Button>
         </CardContent>
+
+        <p className="text-center text-sm text-muted-foreground pt-2">
+        Don't have an account?{" "}
+        <Link href="/register" className="font-medium text-primary underline-offset-4 hover:underline">
+          Sign up
+        </Link>
+      </p>
       </Card>
     </div>
   );
