@@ -3,11 +3,7 @@ import Link from "next/link";
 import { getSession } from "@/lib/auth";
 import LogoutButton from "@/components/logout-button";
 
-export default async function DashboardLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
   const session = await getSession();
 
   if (!session) {
