@@ -1,4 +1,4 @@
-import { adminAuth } from "@/lib/firebase-admin";
+import { getAdminAuth } from "@/lib/firebase-admin";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
 
   const idToken = authorization.split("Bearer ")[1];
 
-  await adminAuth.verifyIdToken(idToken, true);
+  await getAdminAuth().verifyIdToken(idToken, true);
 
   const response = NextResponse.json({ status: "success" });
 

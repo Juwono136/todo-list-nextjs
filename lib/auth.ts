@@ -1,5 +1,5 @@
 import { cookies, headers } from "next/headers";
-import { adminAuth } from "@/lib/firebase-admin";
+import { getAdminAuth } from "@/lib/firebase-admin";
 import { auth } from "@/lib/auth-server";
 import { prisma } from "@/lib/prisma";
 import type { DecodedIdToken } from "firebase-admin/auth";
@@ -22,7 +22,7 @@ export async function getSession(): Promise<SessionUser | null> {
   // Try Firebase ID token (Google or Firebase email/password)
   if (sessionCookie) {
     try {
-      const decodedToken: DecodedIdToken = await adminAuth.verifyIdToken(sessionCookie, true);
+      const decodedToken: DecodedIdToken = await getAdminAuth().verifyIdToken(sessionCookie, true);
       const user = await prisma.user.findUnique({
         where: { email: decodedToken.email! },
       });
